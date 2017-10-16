@@ -1,0 +1,57 @@
+<a href="#/products">Go Back</a>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Edit Student</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form ng-submit="updateStudent()" ng-init="getStudent()">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" ng-model="student.name" placeholder="name">
+                    </div>
+                    <div class="form-group">
+                        <label>Room:</label>
+                        <input type="text" class="form-control" ng-model="student.room">
+                    </div>
+                    <div class="form-group">
+                        <label>Debt</label>
+                        <input type="Number" class="form-control" step="0.1" min="0" ng-model="student.debt">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control" ng-model="student.phone">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+                    <h3>Transactions</h3>
+                    <div ng-if="student.transactions.length>0" class="container">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>Product name</th>
+                              <th>Product price</th>
+                              <th>Quantity</th>
+                              <th>Date</th>
+                              <th>Total price</th>
+                            </tr>
+                          </thead>
+                          <tbody ng-repeat="t in student.transactions | orderBy: 'time'">
+                            <tr>
+                              <td>{{t.productName}}</td>
+                              <td>{{t.productPrice| currency:"₪"}}</td>
+                              <td>{{t.quantity}}</td>
+                              <td>{{t.time}}</td>
+                              <td>{{t.quantity*t.productPrice| currency:"₪"}}</td>
+                          </tr>
+                          </tbody>
+                        </table>
+                        <button class="btn btn-danger" data-toggle="modal" data-target="#confirmClearHistory">clear history</button>
+                    </div>
+                    <div ng-if="student.transactions.length==0"><h4>no transactions history</h4></div>
+                    <clear-hist></clear-hist>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="panel panel-default" ng-init="getProducts()">
+  <div class="panel-heading">
+    <h3 class="panel-title">Products List</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+
+        <div class="col-md-6">
+          <input type="text" class="form-control list-group-item" placeholder="Search" ng-model="search">
+        </div>
+        <div class="col-md-6">
+          <a href="#/products/add">
+          <span class="btn btn-default btn-group btn-group-justified">
+            Add New Product
+          </span>
+          </a>
+        </div>
+
+    </div>
+    <div class="row">
+    	<div ng-repeat="product in products | filter : {name: search} | orderBy: 'name'">
+        <div class="clearfix" ng-if="$index%2==0"></div>
+    		<div class="col-lg-6 col-md-6 col-sm-6">
+    				<h4>{{product.name}}</h4>
+    				<p>
+              <span ng-if="product.stock>0">stock: {{product.stock}}</span>
+              <h4>
+                <span ng-if="product.stock<=0" class="label label-warning">
+                  out of stock
+                </span>
+              </h4>
+						price: {{product.price |	currency:"₪"}}</p>
+            <a class="btn btn-primary" href="#/products/edit/{{product._id}}">Edit</a> |
+            <a class="btn btn-danger" href="#" ng-click="removeProduct(product._id)">Delete</a>
+
+    		</div>
+    	</div>
+    </div>
+  </div>
+</div>

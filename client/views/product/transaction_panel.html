@@ -1,0 +1,50 @@
+<a href="#/products">Go Back</a>
+<div class="panel panel-default" ng-init="getProduct()">
+    <div class="panel-heading">
+        <h2 class="panel-title" style="text-align: center;">{{product.name}}</h2>
+    </div>
+    <div class="panel-body" ng-controller="StudentsController">
+        <div class="row">
+            <div class="col-md-6" ng-init="getStudents()">
+                <ul class="list-group">
+                    <li class="list-group-item" style="text-align: right;">מחיר  : {{product.price | currency:"₪"}}</li>
+                    <li class="list-group-item" style="text-align: right;">
+                        <input type="range" name="quantity" id="reversedRange" ng-model="data.quantity" value="1" ng-min="0" ng-max="product.stock">
+                        <span style="text-align: right;">כמות: {{data.quantity}}</span>
+                    </li>
+                </ul>
+                <ul class=list-group>
+                    <li class="list-group-item" style="text-align:right;">
+                        :שם התלמיד
+                      <br>
+                        <input autocomplete="off" id="rtlInputBox" type="text" style="width: 300px;" class="form-control" ng-model="data.selectedStudent"
+                        typeahead="student as student.name for student in students | filter:{name:$viewValue} | limitTo:10"/>
+                    </li>
+                </ul>
+                <ul ng-if="data.selectedStudent.name" class="list-group" style="text-align:right;">
+                    <h4>{{data.selectedStudent.name}}</h4>
+                    <li class="list-group-item">
+                      חדר:&nbsp;
+                      {{data.selectedStudent.room}}
+                    </li>
+                    <li class="list-group-item">
+                      חוב:&nbsp;
+                      {{data.selectedStudent.debt | currency:"₪"}}
+                    </li>
+                    <li class="list-group-item">
+                      טלפון:&nbsp;
+                      0{{data.selectedStudent.phone}}
+                    </li>
+                    <h3>
+                      לתשלום:&nbsp;
+                      {{data.quantity*product.price| currency:"₪"}}
+                    </h3>
+                    <span ng-click="makeTransaction()" class="btn btn-primary pull-right">קנייה</span>
+                </ul>
+            </div>
+            <div class="col-md-6">
+              <img class="thumbnail" src="{{product.imageURL}}">
+            </div>
+        </div>
+    </div>
+</div>

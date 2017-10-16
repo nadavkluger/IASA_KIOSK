@@ -1,0 +1,63 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+.nav > li > a {
+  display: block;
+}
+img {
+    width: 100%;
+}
+.brand-centered {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+.brand-centered .navbar-brand {
+  display: flex;
+  align-items: center;
+}
+.ng-valid {}
+
+.ng-invalid {}
+
+.ng-pristine {}
+
+.ng-dirty {}
+
+.ng-touched {}
+
+
+/* really specific css rules applied by angular */
+
+.ng-invalid-required {}
+
+.ng-invalid-minlength {}
+
+.ng-valid-max-length {}
+
+#reversedRange {
+    direction: rtl
+  }
+#rtlInputBox{
+      display:inline-block;
+      text-align: right;
+      clear:both;
+  }
+li{
+  display:list-item;
+  overflow:visible;
+}
+.dropdown-menu{
+  left: auto !important;
+  right:10px;
+}
+.link
+{
+   color:black;
+   text-decoration: none;
+   background-color: none;
+   font-family: sans-serif;
+}

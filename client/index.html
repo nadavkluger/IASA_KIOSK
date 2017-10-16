@@ -1,0 +1,74 @@
+
+<html ng-app="myApp">
+
+<head>
+	<script src="/bower_components/angular/angular.js"></script>
+	<title>Kiosk</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+	<link href="/bower_components/toastr/toastr.css" rel="stylesheet"/>
+</head>
+
+<body ng-controller="IndexController">
+	<div ng-cloak>
+	<header ng-if="currentPage !== '/signIn'">
+		<nav ng-if="userData.loggedin==true" class="navbar navbar-default">
+		<div class="container">
+			<div class="navbar-header">
+			<div class="brand-centered">
+
+				<a class="navbar-brand" href="#/products">
+					<img alt="Brand" src="/assets/logo_64x64.png">
+				</a>
+			</div>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul ng-if="userData.master" class="nav navbar-nav">
+					<li><a href="#/students/manage">תלמידים</a></li>
+					<li><a href="#/users/manage">משתמשים</a></li>
+					<li><a href="#/products/manage">מוצרים</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown">
+						<a href="#/products" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{userData.username}}
+								<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a class="pull-right" href="#/products" ng-click="logout()">צא</a></li>
+							<li>
+								<a class="pull-right" href="#/products" type="button" data-toggle="modal" data-target="#myModal">שנה סיסמא</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+		</nav>
+	</header>
+</div>
+	<change-pass></change-pass>
+
+</div>
+	<div class="container">
+		<div class="row">
+				<div ng-view onload="update()">
+				</div>
+		</div>
+		</div>
+		<h5 ng-cloak><center>© 2017 Nadav Kluger</center><h5>
+		<!-- /.container -->
+		<script src="/bower_components/angular-route/angular-route.js"></script>
+		<script src="/app.js"></script>
+		<script src="/controllers/index.js"></script>
+		<script src="/bower_components/jquery/dist/jquery.js"></script>
+		<script type="text/javascript" src="/bower_components/CryptoJS-3.1.2-sha1.js"></script>
+		<script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+		<script src="/bower_components/ui-bootstrap-tpls-0.12.0.min.js"></script>
+		<script src="/bower_components/toastr/toastr.js"></script>
+		<script src="/controllers/products.js"></script>
+		<script src="/controllers/students.js"></script>
+		<script src="/controllers/login.js"></script>
+		<script src="/controllers/users.js"></script>
+</body>
+
+</html>

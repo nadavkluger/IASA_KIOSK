@@ -1,0 +1,35 @@
+﻿<div class="panel panel-default" ng-init="getProducts()">
+    <div class="panel-heading">
+        <h3 class="panel-title" style="text-align: center;">רשימת מוצרים</h3>
+    </div>
+    <div class="panel-body">
+            <div style="padding-bottom:10px" class="col-lg-12">
+                <input type="text" class="form-control list-group-item" style="text-align: right;" placeholder="חיפוש" ng-model="search">
+            </div>
+            <div ng-repeat="product in products | filter : {name: search} | orderBy: 'name'">
+              <div class="clearfix" ng-if="$index%3==0"></div>
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                  <h4 style="text-align: right;">{{product.name}}</h4>
+                  <p style="text-align:right; margin:0;">
+                    מלאי:&nbsp;{{product.stock}}&nbsp;יחידות
+                  </p>
+                  <p style="text-align:right; margin:0;">
+                    &nbsp;מחיר:&nbsp;{{product.price | currency:"₪"}}
+                  </p>
+                    <span ng-if="product.stock>0" class="pull-right">
+                      <a class="btn btn-primary btn-md" href="#/products/buy/{{product._id}}">קלסר</a>
+                      <a class="btn btn-default btn-md" ng-click="buyInCash(product)">מזומן</a>
+                    </span>
+                    <h4>
+                      <span ng-if="product.stock<=0" class="label label-warning">
+                        out of stock
+                      </span>
+                   </h4>
+                  </div>
+                <div class="col-lg-2 col-md-2 col-sm-2">
+                  <img ng-if="product.imageURL" class="thumbnail" src="{{product.imageURL}}">
+                  <img ng-hide="product.imageURL" class="thumbnail" src="assets/iasa-logo.png">
+                </div>
+            </div>
+    </div>
+</div>

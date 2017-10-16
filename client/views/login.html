@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Sign in</title>
+    <link href="/css/login.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- <div class="container"> -->
+    <div class="form-group">
+        <!--style="padding-right:20px; border-right: 2px solid #ccc;">-->
+        <form ng-submit="submit()" autocomplete="off" class="form-signin">
+            <h2 class=form-signin-heading>Sign in</h2>
+
+            <label for="inputUsername" class="sr-only">Username</label>
+            <input ng-model="user" type="text" id="inputUsername" name="username" class="form-control" placeholder="username" autocomplete="off" required autofocus>
+
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input ng-model="pass" type="password" id="inputPassword" name="password" class="form-control" placeholder="password" autocomplete="off" required>
+
+            <!-- <div class="checkbox center">
+                <label>
+                  <input type="checkbox" value="remember-me" name="keepSignIn" > Remember me
+                </label> -->
+            <!-- </div> -->
+
+            <button type="submit" value="submit" class="btn btn-lg btn-primary btn-block">Sign in</button>
+        </form>
+    </div>
+</body>
+
+</html>

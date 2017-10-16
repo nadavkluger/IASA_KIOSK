@@ -1,0 +1,37 @@
+﻿<div class="panel panel-default" ng-init="getStudents()">
+    <div class="panel-heading">
+        <h3 class="panel-title">Students List</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-10">
+                <input type="text" class="col-md-6 form-control list-group-item" placeholder="Search" ng-model="search">
+            </div>
+
+            <div class="col-lg-2">
+              <button ng-cloak ng-click="download()"  type="button" class="btn btn-default btn-md">
+                  <span class="glyphicon glyphicon-download-alt" aria-hidden="true">
+                    <span class="link">
+                      Download
+                    </span>
+                  </span>
+              </button>
+            </div>
+
+            <div ng-repeat="student in students | filter : {name: search} | orderBy: 'name' | limitTo:24">
+                <div class="clearfix" ng-if="$index%4==0"></div>
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                        <h4>{{student.name}}</h4>
+                        <p>debt: {{student.debt | currency:"₪"}}
+                            <br> room: {{student.room}}
+                            <br> phone:
+                            <span ng-if="student.phone"> 0{{student.phone}}</span>
+                            <span ng-if="!student.phone">not in database</span>
+                        </p>
+                        <a class="btn btn-primary" href="#/students/edit/{{student._id}}">Edit Details</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
